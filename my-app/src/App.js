@@ -5,14 +5,30 @@ import { datalar } from "./data";
 
 function App() {
   const [takimUyeler, setTakimUyeler] = useState([...datalar]);
+  const [yeniUye, setYeniUye] = useState("");
 
   const dataAl = (e) => {
-    setTakimUyeler([...takimUyeler, { [e.target.id]: e.target.value }]);
+    setYeniUye({
+      ...yeniUye,
+      [e.target.id]: e.target.value,
+    });
   };
 
-  console.log(takimUyeler);
+  const submitData = (e) => {
+    e.preventDefault();
+    setTakimUyeler([...takimUyeler, yeniUye]);
+  };
 
-  return <div></div>;
+  return (
+    <div>
+      <Form
+        submitData={submitData}
+        dataAl={dataAl}
+        takimUyeler={takimUyeler}
+      ></Form>
+      {takimUyeler}
+    </div>
+  );
 }
 
 export default App;

@@ -1,19 +1,34 @@
 const Form = (props) => {
-  const { dataAl } = props;
+  const { dataAl, submitData, takimUyeler } = props;
   return (
     <div>
-      <form>
+      <form onSubmit={submitData}>
         <label>
           isim
-          <input type="text" id="isim" onChange={dataAl}></input>
+          <input
+            type="text"
+            id="isim"
+            value={takimUyeler.isim}
+            onChange={dataAl}
+          ></input>
         </label>
         <label>
           email
-          <input type="text" id="email" onChange={dataAl}></input>
+          <input
+            type="text"
+            id="email"
+            value={takimUyeler.email}
+            onChange={dataAl}
+          ></input>
         </label>
         <label>
           rol
-          <input type="text" id="rol" onChange={dataAl}></input>
+          <input
+            type="text"
+            id="rol"
+            value={takimUyeler.rol}
+            onChange={dataAl}
+          ></input>
         </label>
         <button type="submit">Kaydet</button>
       </form>

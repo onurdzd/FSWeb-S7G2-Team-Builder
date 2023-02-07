@@ -1,20 +1,19 @@
-import React from "react";
-
 const Form = (props) => {
+  const { dataAl } = props;
   return (
     <div>
-      <form onSubmit={props.submitEt}>
+      <form>
         <label>
           isim
-          <input></input>
+          <input type="text" id="isim" onChange={dataAl}></input>
         </label>
         <label>
           email
-          <input></input>
+          <input type="text" id="email" onChange={dataAl}></input>
         </label>
         <label>
           rol
-          <input></input>
+          <input type="text" id="rol" onChange={dataAl}></input>
         </label>
         <button type="submit">Kaydet</button>
       </form>

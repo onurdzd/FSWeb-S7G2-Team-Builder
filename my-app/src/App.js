@@ -1,21 +1,18 @@
 import { useState } from "react";
 import "./App.css";
 import Form from "./Components/Form";
+import { datalar } from "./data";
 
 function App() {
-  const [takimUyeler, setTakimUyeler] = useState({
-    id: 1,
-    name: "onur",
-    rol: "full stack",
-  });
+  const [takimUyeler, setTakimUyeler] = useState([...datalar]);
 
-  const submitEt = () => {};
+  const dataAl = (e) => {
+    setTakimUyeler([...takimUyeler, { [e.target.id]: e.target.value }]);
+  };
 
-  return (
-    <div>
-      <Form submitEt={submitEt}></Form>
-    </div>
-  );
+  console.log(takimUyeler);
+
+  return <div></div>;
 }
 
 export default App;

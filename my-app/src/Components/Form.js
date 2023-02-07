@@ -1,5 +1,6 @@
 const Form = (props) => {
-  const { dataAl, submitData, takimUyeler } = props;
+  const { dataAl, submitData, yeniUye, sartSonuc } = props;
+
   return (
     <div>
       <form onSubmit={submitData}>
@@ -8,7 +9,7 @@ const Form = (props) => {
           <input
             type="text"
             id="isim"
-            value={takimUyeler.isim}
+            value={yeniUye.isim}
             onChange={dataAl}
           ></input>
         </label>
@@ -17,7 +18,7 @@ const Form = (props) => {
           <input
             type="text"
             id="email"
-            value={takimUyeler.email}
+            value={yeniUye.email}
             onChange={dataAl}
           ></input>
         </label>
@@ -26,11 +27,13 @@ const Form = (props) => {
           <input
             type="text"
             id="rol"
-            value={takimUyeler.rol}
+            value={yeniUye.rol}
             onChange={dataAl}
           ></input>
         </label>
-        <button type="submit">Kaydet</button>
+        <button type="submit" disabled={sartSonuc}>
+          Kaydet
+        </button>
       </form>
     </div>
   );

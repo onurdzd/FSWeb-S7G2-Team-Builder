@@ -6,7 +6,6 @@ import { datalar } from "./data";
 function App() {
   const [takimUyeler, setTakimUyeler] = useState([...datalar]);
   const [yeniUye, setYeniUye] = useState("");
-  const [duzenlenecekUye, setDuzenlenecekUye] = useState("");
   const [sartSonuc, setSartSonuc] = useState(true);
 
   const dataAl = (e) => {
@@ -18,22 +17,22 @@ function App() {
 
   const submitData = (e) => {
     e.preventDefault();
-    if (!duzenlenecekUye) {
-      setTakimUyeler([...takimUyeler, yeniUye]);
-    }
-    setDuzenlenecekUye("");
+    setTakimUyeler([...takimUyeler, yeniUye]);
     setYeniUye("");
   };
 
   const handleDuzenle = (e) => {
     setYeniUye(takimUyeler.find((item) => item.isim === e.isim));
-    setDuzenlenecekUye(yeniUye);
+    setTakimUyeler(takimUyeler.filter((item) => item !== e));
+  };
+
+  const handleSil = (e) => {
     setTakimUyeler(takimUyeler.filter((item) => item !== e));
   };
 
   useEffect(() => {
     if (yeniUye) {
-      if (!yeniUye.isim || !yeniUye.email || !yeniUye.rol) {
+      if (!yeniUye.isim & !yeniUye.email & !yeniUye.rol) {
         setSartSonuc(true);
       } else {
         setSartSonuc(false);
@@ -53,6 +52,7 @@ function App() {
         <div key={index}>
           {item.isim} {item.email} {item.rol}
           <button onClick={() => handleDuzenle(item)}>Düzenle</button>
+          <button onClick={() => handleSil(item)}>Sil</button>
         </div>
       ))}
     </div>

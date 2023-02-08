@@ -6,7 +6,7 @@ import { datalar } from "./data";
 function App() {
   const [takimUyeler, setTakimUyeler] = useState([...datalar]);
   const [yeniUye, setYeniUye] = useState("");
-  const [duzenlenecekUye, setDuzenlenecekUye] = useState();
+  const [duzenlenecekUye, setDuzenlenecekUye] = useState("");
   const [sartSonuc, setSartSonuc] = useState(true);
 
   const dataAl = (e) => {
@@ -19,18 +19,19 @@ function App() {
   const submitData = (e) => {
     e.preventDefault();
     setTakimUyeler([...takimUyeler, yeniUye]);
-    setYeniUye("");
   };
 
   const handleDuzenle = (e) => {
-    setDuzenlenecekUye(e);
+    setYeniUye(takimUyeler.find((item) => item.isim === e.isim));
   };
 
   useEffect(() => {
-    if (!yeniUye.isim || !yeniUye.email || !yeniUye.rol) {
-      setSartSonuc(true);
-    } else {
-      setSartSonuc(false);
+    if (yeniUye) {
+      if (!yeniUye.isim || !yeniUye.email || !yeniUye.rol) {
+        setSartSonuc(true);
+      } else {
+        setSartSonuc(false);
+      }
     }
   }, [yeniUye]);
 

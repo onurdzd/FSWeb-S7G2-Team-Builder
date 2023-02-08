@@ -18,11 +18,17 @@ function App() {
 
   const submitData = (e) => {
     e.preventDefault();
-    setTakimUyeler([...takimUyeler, yeniUye]);
+    if (!duzenlenecekUye) {
+      setTakimUyeler([...takimUyeler, yeniUye]);
+    }
+    setDuzenlenecekUye("");
+    setYeniUye("");
   };
 
   const handleDuzenle = (e) => {
     setYeniUye(takimUyeler.find((item) => item.isim === e.isim));
+    setDuzenlenecekUye(yeniUye);
+    setTakimUyeler(takimUyeler.filter((item) => item !== e));
   };
 
   useEffect(() => {

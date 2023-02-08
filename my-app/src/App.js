@@ -15,12 +15,6 @@ function App() {
     });
   };
 
-  const submitData = (e) => {
-    e.preventDefault();
-    setTakimUyeler([...takimUyeler, yeniUye]);
-    setYeniUye("");
-  };
-
   const handleDuzenle = (e) => {
     setYeniUye(takimUyeler.find((item) => item.isim === e.isim));
     setTakimUyeler(takimUyeler.filter((item) => item !== e));
@@ -43,18 +37,22 @@ function App() {
   return (
     <div>
       <Form
-        submitData={submitData}
+        setTakimUyeler={setTakimUyeler}
+        setYeniUye={setYeniUye}
+        takimUyeler={takimUyeler}
         dataAl={dataAl}
         yeniUye={yeniUye}
         sartSonuc={sartSonuc}
       ></Form>
-      {takimUyeler.map((item, index) => (
-        <div key={index}>
-          {item.isim} {item.email} {item.rol}
-          <button onClick={() => handleDuzenle(item)}>Düzenle</button>
-          <button onClick={() => handleSil(item)}>Sil</button>
-        </div>
-      ))}
+      <fieldset>
+        {takimUyeler.map((item, index) => (
+          <div key={index}>
+            {item.isim} {item.email} {item.rol}
+            <button onClick={() => handleDuzenle(item)}>Düzenle</button>
+            <button onClick={() => handleSil(item)}>Sil</button>
+          </div>
+        ))}
+      </fieldset>
     </div>
   );
 }
